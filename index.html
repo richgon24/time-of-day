@@ -42,8 +42,14 @@
     <main>
 	 <header><h3>A JavaScript Project by YOUR NAME HERE</h3></header>
 	 <h3 id="my-greeting">Greeting Goes Here</h3>
-	    <p>Explain what your page does and how it works here!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible">
+	    <p>This page uses JavaScript to determine the current hour, and present a different image, custom message, and color based on each of the following times of day:</p>
+		<p>
+			Morning (5am to 12 noon)
+			Afternoon (12 noon to 6pm)
+			Evening (6pm to 11pm)
+			Night (11pm to 5am)
+			</p>
+	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible" id="my-pic">
      <footer>
       <p><small>&copy; 2022 by 
           YOUR NAME HERE, All Rights Reserved ~ 
@@ -56,26 +62,46 @@
 
 	/*Use JavaScript to determine the current hour, and present a different image, custom message, and color based on each of the following times of day:
 Morning (5am to 12 noon)
-Afternoon (12 noon to 6pm)
-Evening (6pm to 11pm)
+Afternoon (12 noon to 6pm) 12 - 18
+Evening (6pm to 11pm) 18 - 23
 Night (11pm to 5am)*/ 
 
     
 	myDate = new Date();
 	myHour = myDate.getHours();
 
-	if(myHour > 12){
-			//alert("Good Afternoon!");
-			mySentence = "Good Afternoon!";
-			myColor = "blue";
-	}else{
-			// alert("Good Morning!");
+	//myHour = 20;//TEST ONLY - REMOVE THIS LINE
+
+	if(myHour >= 5 && myHour < 12){
 			mySentence = "Good Morning!";
-			myColor = "red";
+			myColor = "orange";
+			myPic = "morning.jpg";
+
+
+	}else if(myHour >= 12 && myHour < 18){
+			mySentence = "Good Afternoon!";
+			myColor = "green";
+			myPic = "afternoon.jpg";
+
+
+		}else if(myHour >= 18 && myHour < 23){
+			mySentence = "Good Evening!";
+			myColor = "blue";
+			myPic = "evening.jpg";
+
+
+
+	}else{
+			mySentence = "Good Night!";
+			myColor = "purple";
+			myPic = "night.jpg";
 	}
+
+	myPic = "images/" + myPic; 
 
 	document.getElementById("my-greeting").innerHTML = mySentence;
 	document.body.style.backgroundColor = myColor;
+	document.getElementById("my-pic").src = myPic;
 
 	
 	
